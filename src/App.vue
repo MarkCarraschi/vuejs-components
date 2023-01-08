@@ -5,18 +5,18 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-flex text-xs-center>
-            <!-- <router-view></router-view> -->
+            <router-view></router-view>
           </v-flex>
         </v-layout>
       </v-container>
-    </v-content>
+    </v-main>
 
     <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2017</span>
+      <span class="white--text">&copy; App</span>
     </v-footer>
 
     <!-- <v-main>
