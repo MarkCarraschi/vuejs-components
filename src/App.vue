@@ -1,6 +1,22 @@
 <template>
   <v-app>
-    <Drawer :drawer.sync="drawer"></Drawer>
+    <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+      <v-list nav dense>
+        <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
+
+          <v-list-item v-for="item in itemsDrawer" :key="item.title" @click="goToPage(item.name)" link>
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-app-bar app color="deep-purple" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
@@ -19,48 +35,29 @@
       <span class="white--text">&copy; App</span>
     </v-footer>
 
-    <!-- <v-main>
-      <HelloWorld />
-    </v-main> -->
-
   </v-app>
 </template>
 
 <script>
-//import HelloWorld from '@/components/HelloWorld';
-import Drawer from '@/components/Drawer';
 
 export default {
   name: 'App',
 
-  components: {
-    //HelloWorld,
-    Drawer
-  },
+  components: {},
 
   watch: {
-    drawer: {
-      handler: function (value) {
 
-        this.$nextTick(() => {
-          try {
-            if (value) {
-              document.querySelector('.v-overlay').addEventListener('click', this.handler)
-            } else {
-              document.querySelector('.v-overlay').removeEventListener('click', this.handler)
-            }
-          } catch (e) {
-            // do nothing
-          }
-        })
-
-      }
-    }
+    group() {
+      this.drawer = false
+    },
   },
   methods: {
-    handler() {
-      this.drawer = false
+
+    goToPage(pageName) {
+      console.log("pageName ", pageName);
+      this.$router.push({ name: pageName });
     }
+
   },
 
   data() {
@@ -70,20 +67,16 @@ export default {
       items: [
         {
           route: '/',
-          title: 'Home'
-        },
-        {
-          route: '/second',
-          title: 'Second'
-        },
-        {
-          route: '/third',
-          title: 'Third'
-        },
-        {
-          route: '/fourth',
-          title: 'Fourth'
+          title: 'Home',
+          name: 'Home'
         }
+      ],
+      group: null,
+      itemsDrawer: [
+        { title: 'Home', name: 'Home', icon: 'mdi-view-dashboard' },
+        { title: 'Account', icon: 'mdi-account-box' },
+        { title: 'Payment', icon: 'mdi-credit-card-outline' },
+        { title: 'Settings', icon: 'mdi-cog' },
       ]
     }
   }
