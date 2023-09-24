@@ -31,9 +31,9 @@
       </v-container>
     </v-main>
 
-    <v-footer color="indigo" app>
+    <!-- <v-footer color="indigo" app>
       <span class="white--text">&copy; App</span>
-    </v-footer>
+    </v-footer> -->
 
   </v-app>
 </template>
@@ -56,6 +56,7 @@ export default {
     goToPage(pageName) {
       console.log("pageName ", pageName);
       this.$router.push({ name: pageName });
+      //this.$router.push("/home");
     }
 
   },
@@ -82,3 +83,29 @@ export default {
   }
 };
 </script>
+
+<!--
+<template>
+  <v-app>
+    <v-main>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
+</template>
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'App',
+
+  components: {
+    HelloWorld,
+  },
+
+  data: () => ({
+    //
+  }),
+}
+</script>
+-->
