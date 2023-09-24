@@ -1,19 +1,25 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
-import vuetify from '@/plugins/vuetify'
-import Router from 'vue-router'
-import routes from './routes';
+import vuetify from './plugins/vuetify'
+import { loadFonts } from './plugins/webfontloader'
+import { createRouter, createWebHashHistory } from 'vue-router'
+//import Router from 'vue-router'
+import routes from './routes'
 
-Vue.config.productionTip = false
-Vue.use(Router);
+loadFonts()
 
-const router = new Router({
+const router = createRouter({
+  // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
+  history: createWebHashHistory(),
+  routes, // short for `routes: routes`
+})
+
+/*const router = new Router({
   mode: 'history',
   routes
-});
+});*/
 
-new Vue({
-  vuetify,
-  router,
-  render: h => h(App)
-}).$mount('#app')
+createApp(App)
+  .use(vuetify)
+  .use(router)
+  .mount('#app')

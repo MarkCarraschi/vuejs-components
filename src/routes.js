@@ -9,6 +9,6 @@ export default [
     },
     {
         path: '/responsiveComponent',
-        component: () => import('@/components/ResponsiveComponent.vue')
+        component: () => import('@/components/HelloWorld.vue')
     },
 ]
